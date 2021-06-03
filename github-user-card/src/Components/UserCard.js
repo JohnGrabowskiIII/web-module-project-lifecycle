@@ -1,4 +1,6 @@
 
+import React from 'react'
+
 import UserInfo from './UserInfo'
 
 class UserCard extends React.Component {
@@ -17,6 +19,11 @@ class UserCard extends React.Component {
     render() {
         // JSX FOR CARD
             // {USERINFO FUNCTION}
+        return (
+            <div>
+                <h1>usercard loaded</h1>
+            </div>
+        )      
     }
 
 }

@@ -1,4 +1,6 @@
 
+import React from 'react'
+
 class UserInfo extends React.Component {
 
     constructor(props) {
@@ -14,6 +16,11 @@ class UserInfo extends React.Component {
 
     render() {
         // JSX
+        return (
+            <div>
+                <h1>userinfo loaded</h1>
+            </div>
+        )
     }
 
 }

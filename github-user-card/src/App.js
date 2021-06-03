@@ -1,6 +1,8 @@
 
 import axios from 'axios'
 
+import UserCard from './Components/UserCard'
+
 class App extends React.Component {
 
   constructor() {
@@ -25,6 +27,10 @@ class App extends React.Component {
   }
 
   // ONCLICK SET SELECTED TO E.TARGET.ID
+    // IF SELECTED === E.TARGET.ID ?
+      // SETSTATE SELECTED('') :
+      // SETSTATE SELECTED(E.TARGET.ID)
+    
 
   render() {
     // MAP STATE FUNCTION

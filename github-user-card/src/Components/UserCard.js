@@ -6,15 +6,12 @@ import UserInfo from './UserInfo'
 class UserCard extends React.Component {
 
     constructor(props) {
-        super(props);
-
-        
+        super(props); 
     }
-
-    // {selected, user, id, click, follower} = this.props;
 
     // FUNCTION ADDS/REMOVES CSS TO DIV IF SELECTED === ID
 
+    // IF SELECTED RENDER USERINFO
     userInfoRenderer = () => {
         if (this.props.selected === this.props.id) return (
             <UserInfo user={this.props.user} follower={this.props.follower} />
@@ -22,8 +19,6 @@ class UserCard extends React.Component {
     }
 
     render() {
-        // JSX FOR CARD
-            // {USERINFO FUNCTION}
         return (
             <div onClick={() => this.props.click(this.props.id)} >
                 <div>

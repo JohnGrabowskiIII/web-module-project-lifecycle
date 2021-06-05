@@ -7,12 +7,10 @@ class UserInfo extends React.Component {
 
     constructor(props) {
         super(props)
-        // STATE TO LOAD FOLLOWERS
         this.state = {open: false}
     }
 
-    // render bio, company, location, pRepos, url, username
-
+    // HELPER FUNCTION TO CREATE <P> IN NEEDED FORMAT
     returnPTag = (desc, value, key) => {
         if (value) {
             return (
@@ -24,6 +22,7 @@ class UserInfo extends React.Component {
 
     }
 
+    // IF THIS.STATE.OPEN RENDER FOLLOWER INFO
     followerRenderer = () => {
         if (this.state.open) return (
             <FollowerList info={this.props.user.follower}
@@ -34,6 +33,7 @@ class UserInfo extends React.Component {
         ) 
     }
 
+    // TOGGLE THIS.STATE.OPEN
     toggleButton = e => {
         e.stopPropagation();
         this.setState({open: !this.state.open})
@@ -47,10 +47,8 @@ class UserInfo extends React.Component {
     }
 
     render() {
-        // JSX
         return (
             <div>
-                <h1>userinfo loaded</h1>
                 {this.returnPTag('User Bio', this.props.user.bio)}
                 {this.returnPTag('Associated Company', this.props.user.company)}
                 {this.returnPTag('User Location', this.props.user.location)}

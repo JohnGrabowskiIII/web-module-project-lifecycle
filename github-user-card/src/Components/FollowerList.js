@@ -6,9 +6,9 @@ class FollowerList extends React.Component {
         super(props);
     }
 
+    // CREATE FOLLOWER LOGIN ELEMENTS
     followerArrayRenderer = () => {
         if (this.props.info) {
-            console.log(this.props.info)
             const arrayInfo = this.props.info.map((data, index) => {
                 return this.props.tagCreator(index, data, index);
             })

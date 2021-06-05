@@ -8,7 +8,6 @@ class App extends React.Component {
 
   constructor() {
     super();
-    // STATE USERS
     this.state = {users: [], selected: ''}
   }
 
@@ -19,6 +18,7 @@ class App extends React.Component {
     'austenallred'
   ]
 
+  // DESTRUCTURE DATA AND RETURN OBJECT
   githubInfoGrabber = data => {
     const {avatar_url, bio, company, followers, location, login, name, public_repos, url} = data.data;
     return {
@@ -35,6 +35,7 @@ class App extends React.Component {
     }
   }
 
+  // SET USER STATE TO THE RESULT OF FUNCTION CALL
   userStateSetter = data => {
     this.setState({...this.state, users: [...this.state.users, {...this.githubInfoGrabber(data)}]})
   }
@@ -67,7 +68,6 @@ class App extends React.Component {
 
   // DEFINE APPENDING FOLLOWERS TO STATE
   followerFinder = uname => {
-    console.log(uname);
     axios.get(`https://api.github.com/users/${uname}/followers`)
     .then(res => {
       let stateCopy = this.stateCopier().map(user => {
@@ -85,6 +85,7 @@ class App extends React.Component {
       this.setState({...this.state, selected: id})
   }
 
+  // MAP OVER STATE AND GENERATE USERCARDS
   mapToUserCard = () => {
     return this.state.users.map(user => {
       return (
@@ -98,8 +99,8 @@ class App extends React.Component {
     })
   }
 
+  // BEGIN LIFECYLCE METHODS
   componentDidMount() {
-    // AXIOS CALL GITHUB INFO
     this.setUsers(this.defaultUsernames);
   }
     
@@ -108,10 +109,8 @@ class App extends React.Component {
   }
 
   render() {
-    // MAP STATE FUNCTION
     return (
       <div>
-        <h1>App loaded</h1>
         {this.mapToUserCard()}
       </div>
     )

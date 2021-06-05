@@ -1,5 +1,7 @@
 
+/** @jsxImportSource @emotion/react */
 import React from 'react'
+import {jsx, css} from '@emotion/react'
 
 import FollowerList from './FollowerList'
 
@@ -15,7 +17,7 @@ class UserInfo extends React.Component {
         if (value) {
             return (
                 <div key={key} >
-                    <p>{desc}: {value}</p>
+                    <p><b>{desc}:</b> {value}</p>
                 </div>
             )
         }
@@ -48,7 +50,7 @@ class UserInfo extends React.Component {
 
     render() {
         return (
-            <div>
+            <div css={this.props.style.infoContainer} >
                 {this.returnPTag('User Bio', this.props.user.bio)}
                 {this.returnPTag('Associated Company', this.props.user.company)}
                 {this.returnPTag('User Location', this.props.user.location)}

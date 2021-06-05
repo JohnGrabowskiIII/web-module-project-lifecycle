@@ -1,5 +1,8 @@
 
+/** @jsxImportSource @emotion/react */
+
 import React from 'react'
+import {jsx, css} from '@emotion/react'
 
 import UserInfo from './UserInfo'
 
@@ -14,15 +17,15 @@ class UserCard extends React.Component {
     // IF SELECTED RENDER USERINFO
     userInfoRenderer = () => {
         if (this.props.selected === this.props.id) return (
-            <UserInfo user={this.props.user} follower={this.props.follower} />
+            <UserInfo user={this.props.user} follower={this.props.follower} style={this.props.style} />
         )
     }
 
     render() {
         return (
-            <div onClick={() => this.props.click(this.props.id)} >
+            <div css={[this.props.style.cardContainer]} onClick={() => this.props.click(this.props.id)} >
                 <div>
-                    <img src={this.props.user.avatar} alt={`Github avatar of ${this.props.user.username}`} />
+                    <img src={this.props.user.avatar} alt={`Github avatar of ${this.props.user.username}`} css={this.props.style.cardImage} />
                     <div>
                         <h2>
                             {this.props.user.name}

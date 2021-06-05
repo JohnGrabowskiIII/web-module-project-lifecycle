@@ -1,8 +1,12 @@
 
+/** @jsxImportSource @emotion/react */
+
 import React from 'react'
 import axios from 'axios'
+import {jsx, css} from '@emotion/react'
 
 import UserCard from './Components/UserCard'
+import style from './style'
 
 class App extends React.Component {
 
@@ -94,7 +98,8 @@ class App extends React.Component {
         key={user.username}
         id={user.username}
         click={this.selectSetter}
-        follower={this.followerFinder} />
+        follower={this.followerFinder}
+        style={style} />
       )
     })
   }
@@ -110,7 +115,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div css={[style.pageContainer, style.flexRow]} >
         {this.mapToUserCard()}
       </div>
     )

@@ -5,7 +5,7 @@ class UserInfo extends React.Component {
 
     constructor(props) {
         super(props)
-
+        // STATE TO LOAD FOLLOWERS
     }
 
     componentDidMount() {

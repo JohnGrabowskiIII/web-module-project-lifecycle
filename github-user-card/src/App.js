@@ -78,8 +78,7 @@ class App extends React.Component {
   }
 
   // ONCLICK SET SELECTED TO E.TARGET.ID
-  selectSetter = e => {
-    const {id} = e.target;
+  selectSetter = id => {
     this.state.selected === id ?
       this.setState({...this.state, selected: ''}) :
       this.setState({...this.state, selected: id})
@@ -88,7 +87,7 @@ class App extends React.Component {
   mapToUserCard = () => {
     return this.state.users.map(user => {
       return (
-        <UserCard state={this.state}
+        <UserCard selected={this.state.selected}
         user={user}
         key={user.username}
         id={user.username}
@@ -105,6 +104,7 @@ class App extends React.Component {
     
   componentDidUpdate() {
     console.log(this.state.users)
+    console.log(this.state.selected);
   }
 
   render() {

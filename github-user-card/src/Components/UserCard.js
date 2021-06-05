@@ -7,22 +7,25 @@ class UserCard extends React.Component {
 
     constructor(props) {
         super(props);
-        // STATE TO LOAD FOLLOWERS
+
         
     }
 
-    // {user, id, click, follower} = this.props;
+    // {selected, user, id, click, follower} = this.props;
 
     // FUNCTION ADDS/REMOVES CSS TO DIV IF SELECTED === ID
 
-    // FUNCTION DETERMINES IF SELECTED === ID
+    userInfoRenderer = () => {
+        if (this.props.selected === this.props.id) return (
+            <UserInfo user={this.props.user} follower={this.props.follower} />
+        )
+    }
 
     render() {
         // JSX FOR CARD
             // {USERINFO FUNCTION}
         return (
-            <div>
-                <h1>usercard loaded</h1>
+            <div onClick={() => this.props.click(this.props.id)} >
                 <div>
                     <img src={this.props.user.avatar} alt={`Github avatar of ${this.props.user.username}`} />
                     <div>
@@ -31,6 +34,7 @@ class UserCard extends React.Component {
                         </h2>
                     </div>
                 </div>
+                {this.userInfoRenderer()}
             </div>
         )      
     }

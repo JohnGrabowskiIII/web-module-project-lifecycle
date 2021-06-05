@@ -50,7 +50,7 @@ class App extends React.Component {
 
   // DEFINE AXIOS CALL FOR MULTIPLE USERS
   getUsers = userArray => {
-    userArray.map(user => {
+    userArray.forEach(user => {
       this.getUserSingle(user)
     })
   }
@@ -67,11 +67,12 @@ class App extends React.Component {
 
   // DEFINE APPENDING FOLLOWERS TO STATE
   followerFinder = uname => {
+    console.log(uname);
     axios.get(`https://api.github.com/users/${uname}/followers`)
     .then(res => {
       let stateCopy = this.stateCopier().map(user => {
         if (uname !== user.username) return user;
-        return {...user, follower: res};
+        return {...user, follower: res.data.map(follower => follower.login)};
       })
       this.setState({...this.state.users, users: stateCopy})
     })
@@ -104,7 +105,6 @@ class App extends React.Component {
     
   componentDidUpdate() {
     console.log(this.state.users)
-    console.log(this.state.selected);
   }
 
   render() {

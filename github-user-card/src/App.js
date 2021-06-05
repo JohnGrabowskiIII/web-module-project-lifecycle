@@ -9,32 +9,24 @@ class App extends React.Component {
   constructor() {
     super();
     // STATE USERS
-    this.state = {users: []}
-    // STATE SELECTED
-    // FILTER FUNCTION FOR AXIOS DATA
-    // FUNCTION TO APPEND FOLLOWERS TO STATE
-    // FUNCTION TO MAP STATE AND RETURN CARD JSX
-      // USERCARD NEEDS
-      // CB STATE
-      // KEY
-      // ID
-      // ONCLICK
-    // DEFAULT USERS ARRAY
-    this.defaultUsernames = [
-      'johngrabowskiiii',
-      'torvalds',
-      'elonmuskceo',
-      'austenallred'
-    ]
-
+    this.state = {users: [], selected: ''}
   }
 
+  defaultUsernames = [
+    'johngrabowskiiii',
+    'torvalds',
+    'elonmuskceo',
+    'austenallred'
+  ]
+
   githubInfoGrabber = data => {
-    const {avatar_url, bio, company, location, login, name, public_repos, url} = data.data;
+    const {avatar_url, bio, company, followers, location, login, name, public_repos, url} = data.data;
     return {
       avatar: avatar_url,
       bio: bio,
       company: company,
+      follower: [],
+      followerNumber: followers,
       location: location,
       username: login,
       name: name,
@@ -68,18 +60,48 @@ class App extends React.Component {
     typeof(users) === 'string' ? this.getUserSingle(users) : this.getUsers(users);
     }
 
-  componentDidMount() {
-    // AXIOS CALL GITHUB INFO
-    this.setUsers(this.defaultUsernames);
-      // THEN SET STATE
-      // THEN AXIOS CALL FOLLOWERS
-        // FUNCTION TO APPEND TO STATE
+    // GENERATE COPY OF STATE
+  stateCopier = () => {
+      return this.state.users;
+    }
+
+  // DEFINE APPENDING FOLLOWERS TO STATE
+  followerFinder = uname => {
+    axios.get(`https://api.github.com/users/${uname}/followers`)
+    .then(res => {
+      let stateCopy = this.stateCopier().map(user => {
+        if (uname !== user.username) return user;
+        return {...user, follower: res};
+      })
+      this.setState({...this.state.users, users: stateCopy})
+    })
   }
 
   // ONCLICK SET SELECTED TO E.TARGET.ID
-    // IF SELECTED === E.TARGET.ID ?
-      // SETSTATE SELECTED('') :
-      // SETSTATE SELECTED(E.TARGET.ID)
+  selectSetter = e => {
+    const {id} = e.target;
+    this.state.selected === id ?
+      this.setState({...this.state, selected: ''}) :
+      this.setState({...this.state, selected: id})
+  }
+
+  mapToUserCard = () => {
+    return this.state.users.map(user => {
+      return (
+        <UserCard state={this.state}
+        user={user}
+        key={user.username}
+        id={user.username}
+        click={this.selectSetter}
+        follower={this.followerFinder} />
+      )
+    })
+  }
+
+  componentDidMount() {
+    // AXIOS CALL GITHUB INFO
+    this.setUsers(this.defaultUsernames);
+  }
     
   componentDidUpdate() {
     console.log(this.state.users)
@@ -90,6 +112,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>App loaded</h1>
+        {this.mapToUserCard()}
       </div>
     )
   }

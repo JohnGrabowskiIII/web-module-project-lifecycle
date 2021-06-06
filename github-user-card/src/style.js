@@ -3,6 +3,8 @@
 
 import {jsx, css} from '@emotion/react'
 
+const glow = `box-shadow: 0px 0px 20px gold;`
+
 const style = {
     flexRow: css`display: flex;
         flex-direction: row;
@@ -12,14 +14,13 @@ const style = {
     pageContainer: css`
         width: 90%;
         margin: 0% auto;
-        border: 3px solid white;
     `,
     cardContainer: css`
         width: 150px;
         margin: 3%;
 
         &:hover {
-            box-shadow: 0px 0px 20px cornsilk;
+            ${glow}
         }
 
         > div:first-of-type {
@@ -33,6 +34,9 @@ const style = {
                 font-size: 1.3em;
             }
         }
+    `,
+    glow: css`
+        ${glow}
     `,
     cardImage: css`
         width: 100%;
@@ -52,7 +56,8 @@ const style = {
                 height: 20px;
 
                 &:hover {
-                    background-color: red;
+                    background-color: gold;
+                    color: white;
                 }
             }
 

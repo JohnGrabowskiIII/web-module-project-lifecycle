@@ -13,6 +13,9 @@ class UserCard extends React.Component {
     }
 
     // FUNCTION ADDS/REMOVES CSS TO DIV IF SELECTED === ID
+    glowApplier = () => {
+        if (this.props.selected === this.props.id) return this.props.style.glow;
+    }
 
     // IF SELECTED RENDER USERINFO
     userInfoRenderer = () => {
@@ -23,7 +26,7 @@ class UserCard extends React.Component {
 
     render() {
         return (
-            <div css={[this.props.style.cardContainer]} onClick={() => this.props.click(this.props.id)} >
+            <div css={[this.props.style.cardContainer, this.glowApplier()]} onClick={() => this.props.click(this.props.id)} >
                 <div>
                     <img src={this.props.user.avatar} alt={`Github avatar of ${this.props.user.username}`} css={this.props.style.cardImage} />
                     <div>

@@ -41,6 +41,10 @@ class UserInfo extends React.Component {
         this.setState({open: !this.state.open})
     }
 
+    buttonText = () => {
+        return this.state.open ? '-' : '+';
+    }
+
     componentDidMount() {
         // ANIME.JS TRANSITION
             // Z LEVEL -1
@@ -58,7 +62,7 @@ class UserInfo extends React.Component {
                     {this.returnPTag('Link to Profile', this.props.user.url)}
                     {this.returnPTag('Number of Public Repos', this.props.user.pRepos)}
                     {this.followerRenderer()}
-                <button onClick={this.toggleButton} >+</button>
+                <button onClick={this.toggleButton} >{this.buttonText()}</button>
             </div>
         )
     }

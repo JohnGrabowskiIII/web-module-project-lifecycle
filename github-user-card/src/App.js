@@ -5,6 +5,7 @@ import React from 'react'
 import axios from 'axios'
 import {jsx, css} from '@emotion/react'
 
+import SearchBar from './Components/SearchBar'
 import UserCard from './Components/UserCard'
 import style from './style'
 
@@ -65,16 +66,11 @@ class App extends React.Component {
     typeof(users) === 'string' ? this.getUserSingle(users) : this.getUsers(users);
     }
 
-    // GENERATE COPY OF STATE
-  stateCopier = () => {
-      return this.state.users;
-    }
-
   // DEFINE APPENDING FOLLOWERS TO STATE
   followerFinder = uname => {
     axios.get(`https://api.github.com/users/${uname}/followers`)
     .then(res => {
-      let stateCopy = this.stateCopier().map(user => {
+      let stateCopy = this.state.users.map(user => {
         if (uname !== user.username) return user;
         return {...user, follower: res.data.map(follower => follower.login)};
       })
@@ -115,8 +111,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div css={[style.pageContainer, style.flexRow]} >
-        {this.mapToUserCard()}
+      <div css={[style.pageContainer]} >
+        <SearchBar />
+        <div css={[ style.flexRow]} >
+          {this.mapToUserCard()}
+        </div>
       </div>
     )
   }

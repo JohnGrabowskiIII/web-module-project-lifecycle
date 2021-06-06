@@ -16,6 +16,7 @@ class FollowerList extends React.Component {
         }
     }
 
+    // CALL AXIOS ON MOUNT
     componentDidMount() {
         this.props.follower(this.props.username)
     }

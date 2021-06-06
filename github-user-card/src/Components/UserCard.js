@@ -2,7 +2,6 @@
 /** @jsxImportSource @emotion/react */
 
 import React from 'react'
-import {jsx, css} from '@emotion/react'
 
 import UserInfo from './UserInfo'
 

@@ -1,6 +1,4 @@
 
-/** @jsxImportSource @emotion/react */
-
 import {jsx, css} from '@emotion/react'
 
 const glow = `box-shadow: 0px 0px 20px gold;`
@@ -10,6 +8,27 @@ const style = {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-around;
+    `,
+    searchFlex: css`
+        justify-content: space-between;
+    `,
+    searchContainer: css`
+        background-color: lawngreen;
+        background-color: rgba(124, 252, 0, 0.3);
+
+        > form > input {
+            background-color: black;
+            color: white;
+        }
+
+        > form > span {
+            color: white;
+        }
+
+        > form > button {
+            background-color: black;
+            color: white;
+        }
     `,
     pageContainer: css`
         width: 90%;

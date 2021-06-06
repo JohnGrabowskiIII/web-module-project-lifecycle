@@ -3,7 +3,6 @@
 
 import React from 'react'
 import axios from 'axios'
-import {jsx, css} from '@emotion/react'
 
 import SearchBar from './Components/SearchBar'
 import UserCard from './Components/UserCard'
@@ -13,7 +12,7 @@ class App extends React.Component {
 
   constructor() {
     super();
-    this.state = {users: [], selected: '', getError: []}
+    this.state = {users: [], selected: '', getError: ''}
   }
 
   defaultUsernames = [
@@ -50,6 +49,7 @@ class App extends React.Component {
     axios.get(`https://api.github.com/users/${userString}`)
       .then(res => {
         this.userStateSetter(res)
+        this.setState({...this.state, getError: ''})
       })
       .catch(err => {
         this.setState({...this.state, getError: err})
@@ -108,15 +108,11 @@ class App extends React.Component {
   componentDidMount() {
     this.setUsers(this.defaultUsernames);
   }
-    
-  componentDidUpdate() {
-    console.log(this.state.users)
-  }
 
   render() {
     return (
       <div css={[style.pageContainer]} >
-        <SearchBar getUser={this.getUserSingle} />
+        <SearchBar getUser={this.getUserSingle} err={this.state.getError} style={style} />
         <div css={[ style.flexRow]} >
           {this.mapToUserCard()}
         </div>

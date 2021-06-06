@@ -2,7 +2,6 @@
 /** @jsxImportSource @emotion/react */
 
 import React from 'react'
-import {jsx, css} from '@emotion/react'
 
 class SearchBar extends React.Component {
     constructor(props) {
@@ -24,13 +23,17 @@ class SearchBar extends React.Component {
         this.setState({...this.state, input: e.target.value})
     }
 
+    errorDisplay = () => {
+        if (this.props.err) return <span>Not a valid user</span>
+    }
+
     render() {
         return (
-            <div>
-                <h1>SearchBar loaded</h1>
-                <form onSubmit={this.searchSubmit} >
+            <div css={[this.props.style.searchContainer]} >
+                <form onSubmit={this.searchSubmit} css={[this.props.style.flexRow, this.props.style.searchFlex]} >
                     <input type='text' value={this.state.input} onChange={this.change} placeholder={this.placeholder} />
-                <button>Search</button>
+                    {this.errorDisplay()}
+                    <button >Search</button>
                 </form>
             </div>
 

@@ -13,7 +13,7 @@ class App extends React.Component {
 
   constructor() {
     super();
-    this.state = {users: [], selected: ''}
+    this.state = {users: [], selected: '', getError: []}
   }
 
   defaultUsernames = [
@@ -34,7 +34,7 @@ class App extends React.Component {
       followerNumber: followers,
       location: location,
       username: login,
-      name: name,
+      name: !name ? 'Anonymous' : name,
       pRepos: public_repos,
       url: url
     }
@@ -51,7 +51,11 @@ class App extends React.Component {
       .then(res => {
         this.userStateSetter(res)
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        this.setState({...this.state, getError: err})
+        console.log(err);
+        console.log(this.state.getError);
+      });
   }
 
   // DEFINE AXIOS CALL FOR MULTIPLE USERS
@@ -112,7 +116,7 @@ class App extends React.Component {
   render() {
     return (
       <div css={[style.pageContainer]} >
-        <SearchBar />
+        <SearchBar getUser={this.getUserSingle} />
         <div css={[ style.flexRow]} >
           {this.mapToUserCard()}
         </div>

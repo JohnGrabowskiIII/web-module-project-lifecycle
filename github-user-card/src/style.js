@@ -18,8 +18,13 @@ const style = {
         width: 150px;
         margin: 3%;
 
+        &:hover {
+            box-shadow: 0px 0px 20px cornsilk;
+        }
+
         > div:first-of-type {
             background-color: black;
+            height: auto;
 
             > div > h2 {
                 color: white;
@@ -45,6 +50,10 @@ const style = {
             > button {
                 width: 100%;
                 height: 20px;
+
+                &:hover {
+                    background-color: red;
+                }
             }
 
             > * > p {

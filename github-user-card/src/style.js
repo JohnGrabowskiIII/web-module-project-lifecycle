@@ -15,7 +15,7 @@ const style = {
         border: 3px solid white;
     `,
     cardContainer: css`
-        width: 200px;
+        width: 150px;
         margin: 3%;
 
         > div:first-of-type {
@@ -25,6 +25,7 @@ const style = {
                 color: white;
                 text-align: center;
                 margin: 0%;
+                font-size: 1.3em;
             }
         }
     `,
@@ -32,9 +33,19 @@ const style = {
         width: 100%;
         height: auto;
     `,
+    // ADDRESS OVERFLOW BUG
     infoContainer: css`
         margin-top: -16px;
         background-color: FloralWhite;
+        height: 30vh;
+        overflow: auto;
+        position: relative;
+        top: 17px;
+
+            > button {
+                width: 100%;
+                height: 20px;
+            }
 
             > * > p {
                 word-wrap: break-word;
@@ -42,6 +53,7 @@ const style = {
                 border-bottom-style: dashed;
                 border-bottom-width: thin;
                 border-color: black;
+                font-size: 0.9em;
             }
     `
 }

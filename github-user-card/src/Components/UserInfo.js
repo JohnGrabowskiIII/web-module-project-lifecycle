@@ -51,13 +51,13 @@ class UserInfo extends React.Component {
     render() {
         return (
             <div css={this.props.style.infoContainer} >
-                {this.returnPTag('User Bio', this.props.user.bio)}
-                {this.returnPTag('Associated Company', this.props.user.company)}
-                {this.returnPTag('User Location', this.props.user.location)}
-                {this.returnPTag('Github Username', this.props.user.username)}
-                {this.returnPTag('Link to Profile', this.props.user.url)}
-                {this.returnPTag('Number of Public Repos', this.props.user.pRepos)}
-                {this.followerRenderer()}
+                    {this.returnPTag('User Bio', this.props.user.bio)}
+                    {this.returnPTag('Associated Company', this.props.user.company)}
+                    {this.returnPTag('User Location', this.props.user.location)}
+                    {this.returnPTag('Github Username', this.props.user.username)}
+                    {this.returnPTag('Link to Profile', this.props.user.url)}
+                    {this.returnPTag('Number of Public Repos', this.props.user.pRepos)}
+                    {this.followerRenderer()}
                 <button onClick={this.toggleButton} >+</button>
             </div>
         )

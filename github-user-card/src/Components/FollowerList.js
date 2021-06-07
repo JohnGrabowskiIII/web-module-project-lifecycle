@@ -2,10 +2,7 @@
 import React from 'react'
 
 class FollowerList extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
+    
     // CREATE FOLLOWER LOGIN ELEMENTS
     followerArrayRenderer = () => {
         if (this.props.info) {

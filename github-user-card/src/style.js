@@ -1,5 +1,5 @@
 
-import {jsx, css} from '@emotion/react'
+import {css} from '@emotion/react'
 
 const glow = `box-shadow: 0px 0px 20px gold;`
 

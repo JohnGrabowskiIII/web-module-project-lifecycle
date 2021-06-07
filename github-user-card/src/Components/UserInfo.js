@@ -45,13 +45,6 @@ class UserInfo extends React.Component {
         return this.state.open ? '-' : '+';
     }
 
-    componentDidMount() {
-        // ANIME.JS TRANSITION
-            // Z LEVEL -1
-            // SLIDE DOWN FROM BEHIND CARD
-        console.log(this.props.user)
-    }
-
     render() {
         return (
             <div css={this.props.style.infoContainer} >

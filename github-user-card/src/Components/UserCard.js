@@ -7,10 +7,6 @@ import UserInfo from './UserInfo'
 
 class UserCard extends React.Component {
 
-    constructor(props) {
-        super(props); 
-    }
-
     // FUNCTION ADDS/REMOVES CSS TO DIV IF SELECTED === ID
     glowApplier = () => {
         if (this.props.selected === this.props.id) return this.props.style.glow;
